@@ -21,6 +21,10 @@ module Rubaidh # :nodoc:
               send("#{attr}=", bool ? Time.now : nil)
               bool
             end
+
+            # FIXME: These are not well unit tested.
+            named_scope boolean_attr, :conditions => ["#{attr} IS NOT ? AND #{attr} <= ?", nil, Time.now]
+            named_scope "not_#{boolean_attr}", :conditions => ["#{attr} IS ? OR #{attr} > ?", nil, Time.now]
           end
         end
       end

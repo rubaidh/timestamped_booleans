@@ -10,6 +10,11 @@ end
 class TimestampedBooleansTestModel
   include Rubaidh::TimestampedBooleans
 
+  # Mock out named_scope
+  def self.named_scope(*args)
+    nil
+  end
+
   attr_accessor :published_at
   timestamped_boolean :published_at
 end
@@ -32,6 +37,11 @@ class TimestampedBooleansTest < Test::Unit::TestCase
   def test_should_have_additional_instance_methods_on_model
     assert TimestampedBooleansTestARModel.instance_methods.include?("published?")
     assert TimestampedBooleansTestARModel.instance_methods.include?("published=")
+  end
+
+  def test_should_have_addition_named_scope_class_methods_on_model
+    assert TimestampedBooleansTestARModel.methods.include?("published")
+    assert TimestampedBooleansTestARModel.methods.include?("not_published")
   end
 
   # Just double check that my mocking is working. :-)
