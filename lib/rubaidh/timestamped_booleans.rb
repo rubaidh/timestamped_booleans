@@ -1,6 +1,13 @@
-module Rubaidh
-  module TimestampedBooleans
+module Rubaidh # :nodoc:
+  module TimestampedBooleans # :nodoc:
     module ClassMethods
+
+      #
+      # Set up particular attributes as being timestamped booleans.  It takes
+      # a list of one or more attributes that are datetime fields.  It assumes
+      # that the datetime attributes are named with the Rails convention of
+      # ending in +_at+ or +_on+.
+      #
       def timestamped_booleans(*attrs)
         attrs.each do |attr|
           boolean_attr = attr.to_s.gsub /_(at|on)$/, ''
@@ -19,7 +26,7 @@ module Rubaidh
       alias_method :timestamped_boolean, :timestamped_booleans
     end
 
-    def self.included(base)
+    def self.included(base) # :nodoc:
       base.extend         ClassMethods
     end
   end

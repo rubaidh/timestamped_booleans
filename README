@@ -1,5 +1,6 @@
-Timestamped Booleans
-====================
+= Timestamped Booleans
+
+== Introduction
 
 Sometimes you have an attribute on a model that stores a time stamp in the
 database, because sometimes you want to know *when* an event happens. But
@@ -8,8 +9,7 @@ not. This plugin gives us an easy way to specify that, rather than having to
 explicitly write methods to implement the boolean methods on top of the
 datetime attribute methods.
 
-Example
-=======
+== Example
 
 Let's say I have a `Book` model which records when a book has been published
 in the `published_at` field. But for the most part, I'm just interested in
