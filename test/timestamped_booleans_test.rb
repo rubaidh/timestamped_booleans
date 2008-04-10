@@ -56,6 +56,18 @@ class TimestampedBooleansTest < Test::Unit::TestCase
     assert_equal Time.now, model.published_at
   end
 
+  def test_setting_published_at_to_a_date_in_the_past_makes_published_true
+    model = TimestampedBooleansTestModel.new
+    model.published_at = 3.days.ago
+    assert_equal true, model.published?
+  end
+
+  def test_setting_published_at_to_a_date_in_the_future_makes_published_false
+    model = TimestampedBooleansTestModel.new
+    model.published_at = 3.days.from_now
+    assert_equal false, model.published?
+  end
+
   # FIXME: Can't test this unless we inherit from AR::Base and that doesn't
   # work because the table doesn't exist.
   # def test_setting_published_to_true_on_the_initializer_works_too

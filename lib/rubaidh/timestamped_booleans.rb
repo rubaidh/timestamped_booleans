@@ -13,7 +13,8 @@ module Rubaidh # :nodoc:
           boolean_attr = attr.to_s.gsub /_(at|on)$/, ''
           class_eval do
             define_method("#{boolean_attr}?") do
-              !send(attr).blank?
+              value = send(attr)
+              !value.blank? && value <= Time.now
             end
 
             define_method("#{boolean_attr}=") do |bool|
