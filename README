@@ -41,4 +41,10 @@ the field as a boolean.  Let's see how that works:
     irb(main):008:0> b.published?
     => false
 
+== TODO
+
+* Parameterize the value we set so that it isn't necessarily +Time.now+. I
+  suspect some people will want to specify a different value, probably as a
+  lambda. However, I don't need that functionality yet. :-)
+
 Copyright (c) 2008 Rubaidh Ltd, released under the MIT license
