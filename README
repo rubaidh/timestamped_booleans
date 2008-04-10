@@ -1,13 +1,44 @@
-TimestampedBooleans
-===================
+Timestamped Booleans
+====================
 
-Introduction goes here.
-
+Sometimes you have an attribute on a model that stores a time stamp in the
+database, because sometimes you want to know *when* an event happens. But
+mostly what you want to know is whether it has actually happened at all or
+not. This plugin gives us an easy way to specify that, rather than having to
+explicitly write methods to implement the boolean methods on top of the
+datetime attribute methods.
 
 Example
 =======
 
-Example goes here.
+Let's say I have a `Book` model which records when a book has been published
+in the `published_at` field. But for the most part, I'm just interested in
+whether the book has been published already or not. We can set up the time
+stamped boolean in the model as follows:
 
+    class Book < ActiveRecord::Base
+      timestamped_boolean :published_at
+    end
 
-Copyright (c) 2008 [name of plugin creator], released under the MIT license
+Now, in addition to the `published_at` and `published_at=` methods to
+manipulate the attribute, we have `published?` and `published=` which treats
+the field as a boolean.  Let's see how that works:
+
+    irb(main):001:0> b = Book.new
+    => #<Book id: nil, published_at: nil, created_at: nil, updated_at: nil>
+    irb(main):002:0> b.published?
+    => false
+    irb(main):003:0> b.published = true
+    => true
+    irb(main):004:0> b.published?
+    => true
+    irb(main):005:0> b.published_at
+    => Thu, 10 Apr 2008 08:06:43 IST +01:00
+    irb(main):006:0> b.published = false
+    => false
+    irb(main):007:0> b.published_at
+    => nil
+    irb(main):008:0> b.published?
+    => false
+
+Copyright (c) 2008 Rubaidh Ltd, released under the MIT license
