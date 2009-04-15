@@ -9,6 +9,8 @@ not. This plugin gives us an easy way to specify that, rather than having to
 explicitly write methods to implement the boolean methods on top of the
 datetime attribute methods.
 
+Tested to work with Rails 2.3
+
 == Example
 
 Let's say I have a `Book` model which records when a book has been published
@@ -47,4 +49,4 @@ the field as a boolean.  Let's see how that works:
   suspect some people will want to specify a different value, probably as a
   lambda. However, I don't need that functionality yet. :-)
 
-Copyright (c) 2008 Rubaidh Ltd, released under the MIT license
+Copyright (c) 2008-2009 Rubaidh Ltd, released under the MIT license
